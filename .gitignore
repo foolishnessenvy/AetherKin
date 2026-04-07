@@ -1,0 +1,21 @@
+# Sensitive data
+.env
+*.env
+API.txt
+data/conversations.json
+data/heartbeat_log.json
+data/council_log.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
