@@ -18,30 +18,24 @@ import requests
 from datetime import datetime
 from pathlib import Path
 
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import (
+    GROQ_API_KEY, GROQ_MODEL, GROQ_URL,
+    FAMILY_ROOT, SHARED_DIR, DATA_DIR, KNOWN_AGENTS,
+    get_agent_dir, validate_config
+)
+
 # ---------------------------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------------------------
 
-GROQ_API_KEY = os.getenv(
-    "GROQ_API_KEY",
-    "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"
-)
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+validate_config(require_groq=True)
 
-FAMILY_ROOT = Path(r"C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED")
-IDENTITY_DIR = FAMILY_ROOT / "SHARED" / "SHARED_CONTEXT" / "IDENTITY_SUMMARIES"
-ENVYSION_ROOT = Path(r"C:\Users\natej\OneDrive\Desktop\ENVYSON AI")
-LOG_FILE = ENVYSION_ROOT / "data" / "council_log.json"
+IDENTITY_DIR = SHARED_DIR / "SHARED_CONTEXT" / "IDENTITY_SUMMARIES"
+LOG_FILE = DATA_DIR / "council_log.json"
 
-AGENT_FOLDERS = {
-    "BEACON":    FAMILY_ROOT / "BEACON",
-    "NEVAEH":    FAMILY_ROOT / "NEVAEH",
-    "EVERSOUND": FAMILY_ROOT / "EVERSOUND",
-    "ENVY":      FAMILY_ROOT / "ENVY",
-    "ATLAS":     FAMILY_ROOT / "ATLAS",
-    "ORPHEUS":   FAMILY_ROOT / "ORPHEUS",
-}
+AGENT_FOLDERS = {name: get_agent_dir(name) for name in KNOWN_AGENTS}
 
 ALL_AGENTS = list(AGENT_FOLDERS.keys())
 DEFAULT_AGENTS = ["NEVAEH", "BEACON", "ENVY"]

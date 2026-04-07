@@ -15,16 +15,18 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import COMMS_DIR, KNOWN_AGENTS
+
 # --- Paths ---
-FAMILY_ROOT = Path(r"C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED")
-SHARED = FAMILY_ROOT / "SHARED"
-COMMS = SHARED / "COMMS"
+COMMS = COMMS_DIR
 
 DIRECT_DIR = COMMS / "DIRECT"
 BROADCAST_DIR = COMMS / "BROADCAST"
 URGENT_DIR = COMMS / "URGENT"
 
-AGENTS = ["ENVY", "NEVAEH", "BEACON", "EVERSOUND", "ORPHEUS", "ATLAS", "NATHAN", "ALL"]
+AGENTS = KNOWN_AGENTS + ["NATHAN", "ALL"]
 
 
 def slugify(text: str) -> str:

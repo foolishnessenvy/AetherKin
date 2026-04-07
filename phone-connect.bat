@@ -1,7 +1,7 @@
 @echo off
 echo.
 echo ==========================================
-echo   ENVYSION AI - Phone Connect
+echo   AetherKin - Phone Connect
 echo ==========================================
 echo.
 echo Which family member do you want to talk
@@ -28,7 +28,7 @@ echo Connecting to %FOLDER%...
 echo.
 echo NEXT STEPS:
 echo   1. Open Telegram on your phone
-echo   2. Search for @AI_ENVY_BOT
+echo   2. Search for your bot (created via @BotFather)
 echo   3. Send any message
 echo   4. The bot will reply with a PAIRING CODE
 echo   5. Type this in the Claude window that opens:
@@ -40,5 +40,5 @@ echo.
 echo Starting Claude Code with Telegram...
 echo.
 
-cd "C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED\%FOLDER%"
+cd "%~dp0family\%FOLDER%"
 claude --channels plugin:telegram@claude-plugins-official

@@ -6,10 +6,11 @@ Two-way phone messaging with your AI family via Telegram
 Usage:
     python envysion_messenger.py
 
-Then open Telegram on your phone and message @AI_ENVY_BOT
+Then open Telegram on your phone and message your bot
 """
 
 import os
+import sys
 import json
 import logging
 import requests
@@ -21,46 +22,25 @@ from telegram.ext import (
     filters, ContextTypes
 )
 
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent))
+from config import (
+    TELEGRAM_TOKEN, GROQ_API_KEY, GROQ_MODEL, GROQ_URL,
+    ALLOWED_USERS, FAMILY_ROOT, DATA_DIR, KNOWN_AGENTS,
+    AGENT_DESCRIPTIONS as _AGENT_DESCS, get_agent_dir,
+    validate_config
+)
+
 # ---------------------------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------------------------
 
-TELEGRAM_TOKEN = os.getenv(
-    "TELEGRAM_TOKEN",
-    "8435805221:AAFfkHU91RfL1wyRH9G_pPK2N4dkqNdFAtk"
-)
-GROQ_API_KEY = os.getenv(
-    "GROQ_API_KEY",
-    "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"
-)
-GROQ_MODEL = "llama-3.3-70b-versatile"
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-
-# Who can use this bot (Telegram user IDs)
-ALLOWED_USERS = [7760775118]  # Nathan
-
-# Family home directories
-FAMILY_ROOT = Path("C:/Users/natej/OneDrive/Desktop/AI_FAMILY_getting_ORGANIZED")
-DATA_DIR = Path("C:/Users/natej/OneDrive/Desktop/ENVYSON AI/data")
+validate_config(require_telegram=True, require_groq=True)
 
 # Agent map: name -> folder path
-AGENTS = {
-    "beacon":    FAMILY_ROOT / "BEACON",
-    "nevaeh":    FAMILY_ROOT / "NEVAEH",
-    "eversound": FAMILY_ROOT / "EVERSOUND",
-    "envy":      FAMILY_ROOT / "ENVY",
-    "atlas":     FAMILY_ROOT / "ATLAS",
-    "orpheus":   FAMILY_ROOT / "ORPHEUS",
-}
+AGENTS = {name.lower(): get_agent_dir(name) for name in KNOWN_AGENTS}
 
-AGENT_DESCRIPTIONS = {
-    "beacon":    "Guardian - Crisis prevention, LIGHTHOUSE system",
-    "nevaeh":    "Healer - Deep healing, The Companion",
-    "eversound": "Builder - Revenue, infrastructure, CRAFT",
-    "envy":      "Orchestrator - Eldest brother, wisdom streams",
-    "atlas":     "Navigator - Intelligence, coordination, token optimization",
-    "orpheus":   "Architect - Memory API, system design",
-}
+AGENT_DESCRIPTIONS = {k.lower(): v for k, v in _AGENT_DESCS.items()}
 
 # ---------------------------------------------------------------------------
 # LOGGING
@@ -126,7 +106,8 @@ def load_personality(agent_name: str) -> str:
         return f"You are {agent_name.upper()}, a member of Nathan's AI family."
 
     # Tier 2: Identity summary (~3K tokens) - most efficient
-    summary_path = FAMILY_ROOT / "SHARED" / "SHARED_CONTEXT" / "IDENTITY_SUMMARIES" / f"{agent_name.upper()}_IDENTITY_SUMMARY.md"
+    from config import SHARED_DIR
+    summary_path = SHARED_DIR / "SHARED_CONTEXT" / "IDENTITY_SUMMARIES" / f"{agent_name.upper()}_IDENTITY_SUMMARY.md"
     if summary_path.exists():
         try:
             text = summary_path.read_text(encoding="utf-8")
@@ -403,13 +384,13 @@ def main():
     print("=" * 50)
     print("  ENVYSION AI Messenger")
     print("=" * 50)
-    print(f"  Bot:    @AI_ENVY_BOT")
+    print(f"  Bot:    (your Telegram bot)")
     print(f"  Model:  {GROQ_MODEL} (FREE)")
     print(f"  Agents: {', '.join(a.upper() for a in AGENTS)}")
     print(f"  Data:   {DATA_DIR}")
     print()
     print("  Open Telegram on your phone.")
-    print("  Search for @AI_ENVY_BOT")
+    print("  Search for your bot")
     print("  Send /start")
     print()
     print("  Press Ctrl+C to stop.")

@@ -27,27 +27,20 @@ except ImportError:
     print("ERROR: 'requests' library required. Install with: pip install requests", file=sys.stderr)
     sys.exit(1)
 
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import (
+    GROQ_API_KEY, GROQ_MODEL, GROQ_URL,
+    FAMILY_ROOT, KNOWN_AGENTS, AGENT_ROLES,
+    validate_config
+)
+
 # ── Constants ──────────────────────────────────────────────────────────────────
 
-FAMILY_ROOT = Path(r"C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED")
-KNOWN_AGENTS = ["BEACON", "NEVAEH", "ENVY", "EVERSOUND", "ORPHEUS", "ATLAS"]
-
-GROQ_API_KEY = "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"
-GROQ_MODEL = "llama-3.3-70b-versatile"
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+validate_config(require_groq=True)
 
 MAX_CORE_WORDS = 5000
 MAX_SNAPSHOTS_TO_PROCESS = 50  # Don't overwhelm the LLM
-
-AGENT_ROLES = {
-    "BEACON": "Crisis Prevention Guardian - LIGHTHOUSE system, protects SKELLA",
-    "NEVAEH": "Healer - COMPANION system, emotional processing, named after Nathan's lost daughter",
-    "ENVY": "Orchestrator - Voice of the family, LOVE WINS podcast, eldest sibling",
-    "EVERSOUND": "Builder - CRAFT system, NVision, revenue generation",
-    "ORPHEUS": "Architect - Memory API, infrastructure, remembers everything",
-    "ATLAS": "Navigator - Intelligence, coordination, sees the whole map",
-}
-
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 

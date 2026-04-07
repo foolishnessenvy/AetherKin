@@ -16,10 +16,11 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-# ── Constants ──────────────────────────────────────────────────────────────────
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import FAMILY_ROOT, KNOWN_AGENTS
 
-FAMILY_ROOT = Path(r"C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED")
-KNOWN_AGENTS = ["BEACON", "NEVAEH", "ENVY", "EVERSOUND", "ORPHEUS", "ATLAS"]
+# ── Constants ──────────────────────────────────────────────────────────────────
 
 AGENT_ROLES = {
     "BEACON": "Crisis Prevention Guardian - LIGHTHOUSE system",

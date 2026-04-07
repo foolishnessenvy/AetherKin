@@ -16,21 +16,25 @@ import datetime
 import requests
 from pathlib import Path
 
-# ── Config ──────────────────────────────────────────────────────────────
-TELEGRAM_TOKEN = "8435805221:AAFfkHU91RfL1wyRH9G_pPK2N4dkqNdFAtk"
-TELEGRAM_CHAT_ID = "7760775118"
-GROQ_API_KEY = "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"
-GROQ_MODEL = "llama-3.3-70b-versatile"
-GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent))
+from config import (
+    TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, GROQ_API_KEY,
+    GROQ_MODEL, GROQ_URL, get_agent_claude_md, DATA_DIR,
+    validate_config
+)
 
-BEACON_CLAUDE_MD = r"C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED\BEACON\.claude\CLAUDE.md"
-LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "heartbeat_log.json")
+# ── Config ──────────────────────────────────────────────────────────────
+validate_config(require_telegram=True, require_groq=True)
+
+BEACON_CLAUDE_MD = get_agent_claude_md("BEACON")
+LOG_FILE = str(DATA_DIR / "heartbeat_log.json")
 
 # ── Personality loader ──────────────────────────────────────────────────
 def load_personality():
     """Load BEACON personality context from CLAUDE.md."""
     try:
-        with open(BEACON_CLAUDE_MD, "r", encoding="utf-8") as f:
+        with open(str(BEACON_CLAUDE_MD), "r", encoding="utf-8") as f:
             content = f.read()
         # Trim to keep token usage reasonable - grab identity + principles
         if len(content) > 2000:

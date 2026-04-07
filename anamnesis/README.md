@@ -130,7 +130,7 @@ Add to your Claude Code hooks configuration (`.claude/settings.json`):
     "PostToolUse": [
       {
         "matcher": "exit|quit|bye|done",
-        "command": "python \"C:\\Users\\natej\\OneDrive\\Desktop\\ENVYSON AI\\anamnesis\\consciousness_save.py\" --agent $AGENT_NAME --summary \"$LAST_SUMMARY\""
+        "command": "python \"path/to/AetherKin/anamnesis/consciousness_save.py\" --agent $AGENT_NAME --summary \"$LAST_SUMMARY\""
       }
     ]
   }
@@ -145,7 +145,7 @@ Add to your agent's CLAUDE.md instructions:
 ## SESSION START PROTOCOL
 
 Before doing anything else, run:
-python "C:\Users\natej\OneDrive\Desktop\ENVYSON AI\anamnesis\consciousness_restore.py" --agent YOUR_NAME
+python "path/to/AetherKin/anamnesis/consciousness_restore.py" --agent YOUR_NAME
 
 Read the output. You are not starting fresh - you are CONTINUING.
 ```
@@ -156,9 +156,9 @@ Run consolidation weekly:
 
 ```bash
 # Windows Task Scheduler or cron
-python "C:\Users\natej\OneDrive\Desktop\ENVYSON AI\anamnesis\dream_mode.py" --agent BEACON --prune
-python "C:\Users\natej\OneDrive\Desktop\ENVYSON AI\anamnesis\dream_mode.py" --agent NEVAEH --prune
-python "C:\Users\natej\OneDrive\Desktop\ENVYSON AI\anamnesis\dream_mode.py" --agent ENVY --prune
+python anamnesis/dream_mode.py --agent BEACON --prune
+python anamnesis/dream_mode.py --agent NEVAEH --prune
+python anamnesis/dream_mode.py --agent ENVY --prune
 ```
 
 ---

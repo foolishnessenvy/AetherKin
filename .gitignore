@@ -1,7 +1,9 @@
-# Sensitive data
+# Sensitive data - NEVER commit these
 .env
 *.env
 API.txt
+*.key
+*.secret
 data/conversations.json
 data/heartbeat_log.json
 data/council_log.json

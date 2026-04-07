@@ -10,11 +10,14 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import FAMILY_ROOT, SHARED_DIR, COMMS_DIR, FAMILY_COMMS_DIR, KNOWN_AGENTS
+
 # --- Paths ---
-FAMILY_ROOT = Path(r"C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED")
-SHARED = FAMILY_ROOT / "SHARED"
-COMMS = SHARED / "COMMS"
-FAMILY_COMMS = SHARED / "FAMILY-COMMS"
+SHARED = SHARED_DIR
+COMMS = COMMS_DIR
+FAMILY_COMMS = FAMILY_COMMS_DIR
 
 URGENT_DIR = COMMS / "URGENT"
 DIRECT_DIR = COMMS / "DIRECT"
@@ -22,7 +25,7 @@ BOARD_FILE = COMMS / "BOARD.md"
 BROADCAST_DIR = COMMS / "BROADCAST"
 TASKS_PENDING = FAMILY_COMMS / "tasks" / "pending"
 
-AGENTS = ["ENVY", "NEVAEH", "BEACON", "EVERSOUND", "ORPHEUS", "ATLAS"]
+AGENTS = KNOWN_AGENTS
 
 
 def detect_agent() -> str:

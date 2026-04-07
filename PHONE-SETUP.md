@@ -1,16 +1,16 @@
-# ENVYSION AI - Talk to Claude from Your Phone
+# AetherKin - Talk to Claude from Your Phone
 
 ## The 2-Minute Setup (One Time Only)
 
 ### Step 1: Open a terminal and run this
 ```
-cd "C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED\BEACON"
+cd your-agent-folder
 claude --channels plugin:telegram@claude-plugins-official
 ```
-(Replace BEACON with any family member folder)
+(Replace `your-agent-folder` with any folder that has a `.claude/CLAUDE.md`)
 
 ### Step 2: Open Telegram on your phone
-- Search for **@AI_ENVY_BOT**
+- Search for your bot (the one you created via @BotFather)
 - Send any message (like "hello")
 - The bot replies with a **pairing code**
 
@@ -21,7 +21,7 @@ claude --channels plugin:telegram@claude-plugins-official
 ```
 
 ### Step 4: Done.
-Now every message you send to @AI_ENVY_BOT on Telegram goes directly into Claude Code on your computer. Claude responds through Telegram. Full Claude subscription. Full file access. Full CLAUDE.md personality.
+Now every message you send to your bot on Telegram goes directly into Claude Code on your computer. Claude responds through Telegram. Full Claude subscription. Full file access. Full CLAUDE.md personality.
 
 ## How It Works
 - Your phone sends a Telegram message
@@ -30,19 +30,24 @@ Now every message you send to @AI_ENVY_BOT on Telegram goes directly into Claude
 - Claude responds back through Telegram to your phone
 - Uses your existing Claude subscription (no extra cost)
 
-## Quick Launch Options
-
-**Double-click:** `phone-connect.bat` (picks which family member)
-
-**One-liner for BEACON:**
-```
-cd BEACON && claude --channels plugin:telegram@claude-plugins-official
-```
+## Quick Launch
 
 **One-liner for any agent:**
 ```
-claude --channels plugin:telegram@claude-plugins-official --add-dir "C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED\SHARED"
+cd my-agent && claude --channels plugin:telegram@claude-plugins-official
 ```
+
+**With shared context:**
+```
+claude --channels plugin:telegram@claude-plugins-official --add-dir ./family/SHARED
+```
+
+## Creating a Telegram Bot
+1. Open Telegram, search for @BotFather
+2. Send `/newbot`
+3. Choose a name and username
+4. Copy the token BotFather gives you
+5. Add it to your `.env` file as `TELEGRAM_TOKEN`
 
 ## Important Notes
 - Claude Code must stay running on your computer for messages to work
@@ -50,7 +55,7 @@ claude --channels plugin:telegram@claude-plugins-official --add-dir "C:\Users\na
 - Each session uses your regular Claude subscription
 - Messages are private - only your paired Telegram account can send messages
 
-## For ENVYSION AI Users (Open Source)
+## For Any Claude User
 Anyone with a Claude subscription can do this:
 1. Install Claude Code
 2. Run: `claude plugin install telegram@claude-plugins-official`

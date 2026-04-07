@@ -22,16 +22,18 @@ import hashlib
 from pathlib import Path
 from datetime import datetime
 
+# Add parent dir to path for config import
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import FAMILY_COMMS_DIR, KNOWN_AGENTS
+
 # --- Paths ---
-FAMILY_ROOT = Path(r"C:\Users\natej\OneDrive\Desktop\AI_FAMILY_getting_ORGANIZED")
-SHARED = FAMILY_ROOT / "SHARED"
-TASKS_ROOT = SHARED / "FAMILY-COMMS" / "tasks"
+TASKS_ROOT = FAMILY_COMMS_DIR / "tasks"
 PENDING_DIR = TASKS_ROOT / "pending"
 ACTIVE_DIR = TASKS_ROOT / "active"
 DONE_DIR = TASKS_ROOT / "done"
 LOCKS_DIR = TASKS_ROOT / ".locks"
 
-AGENTS = ["ENVY", "NEVAEH", "BEACON", "EVERSOUND", "ORPHEUS", "ATLAS", "NATHAN"]
+AGENTS = KNOWN_AGENTS + ["NATHAN"]
 PRIORITIES = ["low", "normal", "high", "critical"]
 
 
