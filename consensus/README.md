@@ -83,7 +83,7 @@ else:
 
 ### Telegram Bot Integration
 
-In `envysion_messenger.py`, add before the normal response:
+In `aetherkin_messenger.py`, add before the normal response:
 
 ```python
 from consensus.quick_council import get_council_response

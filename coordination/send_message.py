@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ENVYSION AI - Agent Coordination: Send Message
+AetherKin - Agent Coordination: Send Message
 CLI tool for sending messages between agents via the COMMS system.
 
 Usage:

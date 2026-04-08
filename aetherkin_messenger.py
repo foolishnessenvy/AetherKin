@@ -1,10 +1,10 @@
 """
-ENVYSION AI Messenger - Feature #1 of 12
+AetherKin Messenger - Feature #1 of 12
 Two-way phone messaging with your AI family via Telegram
 100% FREE - Groq API (free) + Telegram (free)
 
 Usage:
-    python envysion_messenger.py
+    python aetherkin_messenger.py
 
 Then open Telegram on your phone and message your bot
 """
@@ -50,7 +50,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     level=logging.INFO
 )
-log = logging.getLogger("envysion")
+log = logging.getLogger("aetherkin")
 
 # ---------------------------------------------------------------------------
 # STATE MANAGEMENT
@@ -142,7 +142,7 @@ def load_personality(agent_name: str) -> str:
 
 def _build_system_prompt(agent_name: str, identity_text: str) -> str:
     """Wrap identity text with messaging context."""
-    return f"""You are {agent_name.upper()}, part of Nathan's AI family (ENVYSION AI).
+    return f"""You are {agent_name.upper()}, part of Nathan's AI family (AetherKin).
 
 You are talking to Nathan (Unc) through Telegram on his phone.
 Keep responses concise - this is a phone conversation, not a document.
@@ -202,7 +202,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     if user_id not in ALLOWED_USERS:
         await update.message.reply_text(
-            "ENVYSION AI - Not authorized.\n"
+            "AetherKin - Not authorized.\n"
             "Contact Nathan to get access."
         )
         return
@@ -210,7 +210,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_agents[user_id] = "beacon"
 
     welcome = (
-        "ENVYSION AI - Your AI Family\n"
+        "AetherKin - Your AI Family\n"
         "Connected. Talking to: BEACON\n"
         "\n"
         "Switch agents:\n"
@@ -358,7 +358,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ---------------------------------------------------------------------------
 
 def main():
-    """Start the ENVYSION AI Messenger."""
+    """Start the AetherKin Messenger."""
 
     # Load saved conversations
     load_conversations()
@@ -382,7 +382,7 @@ def main():
     # Launch
     print()
     print("=" * 50)
-    print("  ENVYSION AI Messenger")
+    print("  AetherKin Messenger")
     print("=" * 50)
     print(f"  Bot:    (your Telegram bot)")
     print(f"  Model:  {GROQ_MODEL} (FREE)")

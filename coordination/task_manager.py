@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ENVYSION AI - Agent Coordination: Task Manager
+AetherKin - Agent Coordination: Task Manager
 CLI for creating, listing, claiming, and completing tasks shared across agents.
 
 Usage:
@@ -375,7 +375,7 @@ def slugify(text: str) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="ENVYSION AI - Task Manager")
+    parser = argparse.ArgumentParser(description="AetherKin - Task Manager")
     sub = parser.add_subparsers(dest="command", help="Command to run")
 
     # create

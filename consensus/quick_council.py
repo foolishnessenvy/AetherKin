@@ -1,5 +1,5 @@
 """
-ENVYSION AI - Quick Council (Telegram Integration)
+AetherKin - Quick Council (Telegram Integration)
 Simplified consensus interface for bot integration.
 
 Accepts a question, auto-detects if consensus is needed,

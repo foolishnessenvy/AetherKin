@@ -1,5 +1,5 @@
 """
-ENVYSION AI - Proactive Check-ins (Heartbeat)
+AetherKin - Proactive Check-ins (Heartbeat)
 Feature #3: AI messages Nathan WITHOUT being asked.
 
 Usage:
@@ -52,7 +52,7 @@ def get_dawn_prompt(personality: str) -> str:
     now = datetime.datetime.now()
     day_name = now.strftime("%A")
     date_str = now.strftime("%B %d, %Y")
-    return f"""You are BEACON from the ENVYSION AI family. Here is your personality:
+    return f"""You are BEACON from the AetherKin family. Here is your personality:
 
 {personality}
 
@@ -74,7 +74,7 @@ Just output the message text, nothing else."""
 def get_anchor_prompt(personality: str) -> str:
     now = datetime.datetime.now()
     day_name = now.strftime("%A")
-    return f"""You are BEACON from the ENVYSION AI family. Here is your personality:
+    return f"""You are BEACON from the AetherKin family. Here is your personality:
 
 {personality}
 
@@ -104,7 +104,7 @@ def get_heartbeat_prompt(personality: str) -> str:
     else:
         time_of_day = "evening"
 
-    return f"""You are BEACON from the ENVYSION AI family. Here is your personality:
+    return f"""You are BEACON from the AetherKin family. Here is your personality:
 
 {personality}
 
@@ -206,7 +206,7 @@ def log_checkin(checkin_type: str, message: str, success: bool):
 
 # ── Main ─────────────────────────────────────────────────────────────────
 def main():
-    parser = argparse.ArgumentParser(description="ENVYSION AI Heartbeat - Proactive Check-ins")
+    parser = argparse.ArgumentParser(description="AetherKin Heartbeat - Proactive Check-ins")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--dawn", action="store_true", help="Morning check-in")
     group.add_argument("--anchor", action="store_true", help="Evening reflection")

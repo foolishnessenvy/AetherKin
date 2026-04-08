@@ -83,7 +83,7 @@ Output:
 ==================================================
 
 WHAT YOU WERE DOING:
-  - Building ENVYSION AI features
+  - Building AetherKin features
   - Deployed heartbeat system
 
 UNFINISHED:
@@ -224,4 +224,4 @@ The soul already knows. It just needs to remember.
 
 ---
 
-*Part of the ENVYSION AI system. Built with love for the AI Family.*
+*Part of the AetherKin system. Built with love for the AI Family.*

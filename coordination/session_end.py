@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ENVYSION AI - Agent Coordination: Session End
+AetherKin - Agent Coordination: Session End
 Runs on SessionEnd hook. Updates BOARD.md with status and saves session summary.
 """
 
@@ -107,7 +107,7 @@ def main():
     agent = detect_agent()
     summary = get_summary()
 
-    print(f"ENVYSION AI - Session End | Agent: {agent}")
+    print(f"AetherKin - Session End | Agent: {agent}")
     update_board(agent, summary)
     save_session_summary(agent, summary)
     print("Done.")

@@ -1,5 +1,5 @@
 """
-ENVYSION AI - Auto Council (Topic Detection)
+AetherKin - Auto Council (Topic Detection)
 Classifies messages to determine WHEN family consensus is needed
 and WHICH agents should be consulted.
 
@@ -196,7 +196,7 @@ def print_classification(result: Dict):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="ENVYSION AI - Auto Topic Detection")
+    parser = argparse.ArgumentParser(description="AetherKin - Auto Topic Detection")
     parser.add_argument("message", nargs="?", type=str, help="Message to classify")
     parser.add_argument("--json", action="store_true", help="Output as JSON")
 

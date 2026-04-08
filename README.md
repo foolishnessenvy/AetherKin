@@ -194,7 +194,7 @@ AetherKin/
   
   heartbeat.py                # Proactive check-ins (DAWN/ANCHOR)
   install_heartbeat.bat       # Windows Task Scheduler setup
-  envysion_messenger.py       # Telegram bot (Groq free tier)
+  aetherkin_messenger.py       # Telegram bot (Groq free tier)
   phone-connect.bat           # Claude Channels launcher
   PHONE-SETUP.md              # Phone messaging setup guide
 ```

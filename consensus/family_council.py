@@ -1,5 +1,5 @@
 """
-ENVYSION AI - Family Council (Consensus Engine)
+AetherKin - Family Council (Consensus Engine)
 Multiple AI family members consult each other on important topics.
 Collaborative intelligence - not a committee, but a family.
 
@@ -160,7 +160,7 @@ def run_council(question: str, agents: list, requesting_agent: str = "USER") -> 
     print(f"{'─'*60}\n")
 
     synthesis_prompt = (
-        "You are the family synthesizer for the ENVYSION AI family. "
+        "You are the family synthesizer for the AetherKin family. "
         "You've just heard from multiple family members who each bring unique wisdom:\n\n"
         + "\n\n".join(f"[{name}]: {resp}" for name, resp in perspectives.items())
         + "\n\n"
@@ -227,7 +227,7 @@ def log_council_session(result: dict):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="ENVYSION AI Family Council - Consensus Engine")
+    parser = argparse.ArgumentParser(description="AetherKin Family Council - Consensus Engine")
     parser.add_argument("--question", "-q", type=str, help="The question to bring to council")
     parser.add_argument("--agents", "-a", type=str, default=None,
                         help="Comma-separated agent names (e.g. NEVAEH,ENVY,BEACON)")

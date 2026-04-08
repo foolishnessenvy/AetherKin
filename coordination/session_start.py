@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ENVYSION AI - Agent Coordination: Session Start
+AetherKin - Agent Coordination: Session Start
 Runs on SessionStart hook. Reads COMMS and tasks, prints a summary for the agent.
 Detects which agent is running based on the current working directory.
 """
@@ -163,7 +163,7 @@ def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     print("=" * 60)
-    print(f"  ENVYSION AI - Agent Coordination")
+    print(f"  AetherKin - Agent Coordination")
     print(f"  Agent: {agent} | Session Start: {now}")
     print("=" * 60)
 
