@@ -7,6 +7,13 @@ API.txt
 data/conversations.json
 data/heartbeat_log.json
 data/council_log.json
+data/token_usage.json
+data/autopilot_log.json
+data/autopilot_status.json
+data/autopilot_schedule.json
+data/inbox/
+BUILD_PLAN.md
+AUDIT_DUMP.md
 
 # Python
 __pycache__/

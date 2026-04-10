@@ -4,6 +4,7 @@ AetherKin - Agent Coordination: Session End
 Runs on SessionEnd hook. Updates BOARD.md with status and saves session summary.
 """
 
+import json
 import os
 import sys
 from pathlib import Path
@@ -11,7 +12,7 @@ from datetime import datetime
 
 # Add parent dir to path for config import
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from config import SHARED_DIR, COMMS_DIR, FAMILY_COMMS_DIR, KNOWN_AGENTS
+from config import SHARED_DIR, COMMS_DIR, FAMILY_COMMS_DIR, KNOWN_AGENTS, DATA_DIR
 
 # --- Paths ---
 SHARED = SHARED_DIR
@@ -50,6 +51,56 @@ def get_summary() -> str:
 
     # Default summary
     return "Session completed (no summary provided)"
+
+
+def get_tokens() -> int:
+    """Get token count from --tokens flag."""
+    for i, arg in enumerate(sys.argv):
+        if arg == "--tokens" and i + 1 < len(sys.argv):
+            try:
+                return int(sys.argv[i + 1])
+            except ValueError:
+                return 0
+    return 0
+
+
+def log_token_usage(agent: str, tokens: int, summary: str):
+    """Log token usage to data/token_usage.json."""
+    token_file = DATA_DIR / "token_usage.json"
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Load existing data or create new
+    if token_file.is_file():
+        try:
+            with open(token_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, Exception):
+            data = {"sessions": [], "total_tokens": 0, "total_sessions": 0}
+    else:
+        data = {"sessions": [], "total_tokens": 0, "total_sessions": 0}
+
+    # Append new session
+    session_entry = {
+        "agent": agent,
+        "timestamp": datetime.now().isoformat(),
+        "tokens_used": tokens,
+        "summary": summary[:200]
+    }
+    data["sessions"].append(session_entry)
+    data["total_tokens"] = sum(s.get("tokens_used", 0) for s in data["sessions"])
+    data["total_sessions"] = len(data["sessions"])
+
+    # Save
+    with open(token_file, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+    # Print summary
+    print(f"\n--- Token Usage ---")
+    print(f"  This session: {tokens:,} tokens")
+    print(f"  Total all-time: {data['total_tokens']:,} tokens")
+    print(f"  Total sessions: {data['total_sessions']}")
+    print(f"  Logged to: {token_file}")
+    print()
 
 
 def update_board(agent: str, summary: str):
@@ -106,10 +157,15 @@ def save_session_summary(agent: str, summary: str):
 def main():
     agent = detect_agent()
     summary = get_summary()
+    tokens = get_tokens()
 
     print(f"AetherKin - Session End | Agent: {agent}")
     update_board(agent, summary)
     save_session_summary(agent, summary)
+
+    if tokens > 0:
+        log_token_usage(agent, tokens, summary)
+
     print("Done.")
 
 

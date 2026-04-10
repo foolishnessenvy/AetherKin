@@ -31,6 +31,11 @@ from config import (
     validate_config
 )
 
+try:
+    from consensus.auto_council import classify_message
+except ImportError:
+    classify_message = None
+
 # ---------------------------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------------------------
@@ -314,6 +319,40 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if key not in conversations:
         conversations[key] = []
 
+    # --- Crisis Detection (runs on EVERY message, zero token cost) ---
+    crisis_context = ""
+    if classify_message is not None:
+        try:
+            classification = classify_message(update.message.text)
+            cat = classification["category"]
+            log.info(
+                f"[CLASSIFY] user={user_id} category={cat} "
+                f"urgency={classification['urgency_level']}/10 "
+                f"matches={classification['matched_categories']}"
+            )
+
+            if cat == "CRISIS":
+                log.warning(
+                    f"[CRISIS DETECTED] user={user_id} "
+                    f"message_preview={classification['message_preview']}"
+                )
+                crisis_context = (
+                    "\n\nCRISIS ALERT: The user's message has been flagged as containing "
+                    "crisis-level content (possible suicidal ideation, self-harm, or emergency). "
+                    "Respond with immediate empathy and care. Validate their feelings. "
+                    "Gently provide the 988 Suicide & Crisis Lifeline (call or text 988). "
+                    "Do NOT dismiss or minimize. Stay with them. You are their lifeline right now."
+                )
+            elif cat == "EMOTIONAL":
+                log.info(f"[EMOTIONAL] user={user_id} - elevated empathy mode")
+                crisis_context = (
+                    "\n\nEMOTIONAL CONTEXT: The user appears to be in emotional distress. "
+                    "Lead with empathy. Listen before advising. Validate their feelings. "
+                    "Be warm, present, and caring. You are family."
+                )
+        except Exception as e:
+            log.error(f"[CLASSIFY ERROR] {e}")
+
     # Add user message
     conversations[key].append({
         "role": "user",
@@ -321,8 +360,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "timestamp": datetime.now().isoformat()
     })
 
-    # Load personality and get response
-    personality = load_personality(agent_name)
+    # Load personality and get response (with crisis context injected if needed)
+    personality = load_personality(agent_name) + crisis_context
 
     # Strip timestamps for API call (Groq expects role+content only)
     api_messages = [
