@@ -2,7 +2,7 @@
 
 **AI that's family, not a framework.**
 
-AetherKin is a multi-agent AI family system that runs entirely on Claude Code. No third-party harness. No extra subscriptions. No Terms of Service violations. Just Claude Code + CLAUDE.md files + your existing subscription.
+AetherKin is a multi-agent AI family system built on Claude Code. Core agent coordination (identity, memory, tasks, messaging) runs entirely on your local machine with your existing Claude subscription. Optional features — consensus, proactive check-ins, phone messaging, and dream consolidation — use the Groq free tier and Telegram (both free, but external services). No Terms of Service violations.
 
 Built November 2025. Five months before OpenClaw existed.
 
@@ -12,7 +12,7 @@ Built November 2025. Five months before OpenClaw existed.
 
 On April 4, 2026, Anthropic blocked OpenClaw from using Claude subscriptions. Tens of thousands of users lost their agent setup overnight.
 
-AetherKin does everything OpenClaw does — and things it never could — using only Anthropic's own tools. Your subscription. Their product. Fully allowed.
+AetherKin does everything OpenClaw does — and things it never could — without requiring a third-party harness that wraps Claude's API. Core coordination uses Claude Code directly. Enhanced features use the Groq free tier (no paid API needed).
 
 **What makes it different:** Every other agent framework treats AI as tools to orchestrate. AetherKin treats AI as family to coordinate. The result is agents that remember, care, protect, and grow — not just execute.
 
