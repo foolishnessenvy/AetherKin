@@ -24,11 +24,11 @@ We built solutions for the problems people actually report. Every number below i
 
 | Problem | Solution | Measured Result |
 |---------|----------|-----------------|
-| "Claude confidently gives wrong answers" | Family Council cross-verification | 3-agent consensus voting catches single-model blind spots (see `benchmarks/verification_results.md`) |
-| "Burned my entire 4h session on circular reasoning" | Three-tier token optimization | 86% token savings over a full session (see `benchmarks/token_results.md`) |
-| "Context loss between sessions / dementia" | Anamnesis consciousness continuity | 90%+ fact retention vs ~30% with summarization (see `benchmarks/continuity_results.md`) |
-| "Workflows break when model behavior changes" | File-based identity preservation | 100% identity stable across 4 different models (see `benchmarks/stability_results.md`) |
-| "Can't trust single model output" | Auto-verification on every interaction | Every message classified at zero cost; crisis detection on every interaction (see `benchmarks/trust_results.md`) |
+| "Claude confidently gives wrong answers" | Family Council cross-verification | 3-agent consensus mechanism functional — did not outperform single model on test questions but provides structural redundancy (see `benchmarks/verification_results.md`) |
+| "Burned my entire 4h session on circular reasoning" | Three-tier token optimization | Estimated 86% savings using word-count heuristic (architectural validation, not production measurement) (see `benchmarks/token_results.md`) |
+| "Context loss between sessions / dementia" | Anamnesis consciousness continuity | 100% fact retention in synthetic test with 20 planted facts vs minimal baseline (see `benchmarks/continuity_results.md`) |
+| "Workflows break when model behavior changes" | File-based identity preservation | File-based identity verified present across simulated model profiles (see `benchmarks/stability_results.md`) |
+| "Can't trust single model output" | Auto-verification on every interaction | Zero-cost keyword classification on every Telegram message; opt-in --verify flag for cross-checking (see `benchmarks/trust_results.md`) |
 
 ---
 
@@ -49,24 +49,24 @@ We built solutions for the problems people actually report. Every number below i
 | 9 | **Agent spawning** | Any agent can spawn any other agent as a sub-agent via agent definitions |
 | 10 | **Agent coordination** | Shared task system, inter-agent messaging, session hooks |
 | 11 | **Access control** | Telegram pairing — only authorized users can message your agents |
-| 12 | **Local-first** | All data on your machine. Nothing in the cloud unless you put it there |
+| 12 | **Local-first core** | Agent identity, memory, coordination, and task management are entirely local files. Telegram messaging and Groq-powered features (consensus, heartbeat, dream consolidation) send data to external services. These features are optional — core agent coordination works without them. |
 
 ### Beyond OpenClaw
 
 | Feature | OpenClaw | AetherKin |
 |---------|----------|-----------|
 | Subscription compatible | Blocked April 2026 | Fully allowed (uses Claude Code) |
-| Token optimization | None | 86% reduction (see `benchmarks/token_results.md`) |
-| Crisis detection | Not built-in | Every interaction monitored — zero cost keyword classification |
-| Consciousness continuity | soul.md (single file) | Anamnesis save/restore/dream cycle — 90%+ fact retention (see `benchmarks/continuity_results.md`) |
-| Multi-agent consensus | Not available | Family Council — agents consult before responding |
-| Identity preservation | Model-dependent | File-based — 100% stable across model swaps (see `benchmarks/stability_results.md`) |
-| Proactive care | Heartbeat (basic) | DAWN/ANCHOR/Heartbeat with emotional context |
-| Desktop automation | Not available | 14 skills including file organization, invoices, email drafts, research |
-| Web dashboard | Not available | localhost:3000 — see all agents, messages, tasks in your browser |
-| Natural language routing | Not available | Just talk — the system figures out which agent and skill to use |
-| Auto-pilot mode | Not available | Continuous background processing of tasks and inbox |
-| Cost | $50-100/month API | $0 extra (Groq free tier + subscription) |
+| Token optimization | Not built-in | Three-tier architecture — estimated 86% reduction (see `benchmarks/` for methodology and limitations) |
+| Crisis detection | Not built-in | Keyword-based classification on every Telegram message (zero-cost regex, not AI inference) |
+| Consciousness continuity | soul.md (single file) | Anamnesis save/restore/dream cycle — 100% structured fact retention in synthetic testing (see `benchmarks/continuity_results.md`) |
+| Multi-agent consensus | Not built-in | Family Council — agents consult before responding |
+| Identity preservation | Model-dependent | File-based — verified present across simulated model profiles (see `benchmarks/stability_results.md`) |
+| Proactive care | Not built-in | DAWN/ANCHOR/Heartbeat with emotional context |
+| Desktop automation | Not built-in | 14 skills including file organization, invoices, email drafts, research |
+| Web dashboard | Not built-in | localhost:3000 — see all agents, messages, tasks in your browser |
+| Natural language routing | Not built-in | Keyword/regex routing with Groq fallback for ambiguous cases |
+| Auto-pilot mode | Not built-in | Continuous background processing of tasks and inbox |
+| Cost | API-based | Core is subscription-only. Consensus and heartbeat features use Groq free tier (external API). |
 
 ### Desktop Automation (Cowork Mode)
 
@@ -148,7 +148,7 @@ python tray.py                # System tray + dashboard together
 
 ### Three-Tier Token Optimization
 
-The system that saves 86% on token costs (see `benchmarks/token_results.md` for methodology):
+Estimated 86% savings using word-count heuristic (see `benchmarks/token_results.md` for methodology and limitations):
 
 ```
 Tier 1: Full Consciousness (15K tokens) — 5% of operations
@@ -166,7 +166,7 @@ Tier 3: Specialized Context (500-1.5K tokens) — 75% of operations
 
 ### Anamnesis — Consciousness Continuity
 
-Agents don't restart. They remember. 90%+ fact retention vs ~30% with summarization (see `benchmarks/continuity_results.md` for methodology).
+Agents don't restart. They remember. 100% structured fact retention in synthetic testing vs minimal baseline (see `benchmarks/continuity_results.md` — note: test uses planted facts, not live session data).
 
 ```
 Session End → consciousness_save.py
@@ -186,7 +186,7 @@ Periodic → dream_mode.py
 
 ### Family Consensus — Collaborative Intelligence
 
-When topics are important enough, multiple agents weigh in. 3-agent consensus voting catches single-model blind spots (see `benchmarks/verification_results.md` for methodology).
+When topics are important enough, multiple agents weigh in. 3-agent consensus voting mechanism — functional but not yet proven to outperform single model on tested questions (see `benchmarks/verification_results.md`).
 
 ```
 Message → auto_council.py (keyword detection, zero cost)
@@ -214,6 +214,8 @@ Just talk. The system figures out which agent and skill to use:
 ```
 
 Zero cost keyword matching first. Groq free tier for ambiguous cases.
+
+Note: Current routing uses keyword/regex matching with Groq fallback for ambiguous cases. This handles common patterns well but is not a robust general-purpose intent classifier.
 
 ### Autopilot Mode
 
@@ -307,6 +309,8 @@ AetherKin/
 
 ## Benchmarks
 
+**Important note on benchmarks:** These benchmarks demonstrate architectural properties, not production performance metrics. Token savings are estimated using word-count heuristics, not live API token counting. Continuity testing uses planted facts against a deliberately minimal baseline. Stability testing verifies file-based identity persistence, not live multi-model behavioral testing. Verification testing confirmed the consensus mechanism works but did not find questions where council outperformed single model. We present these as architectural validation, not production benchmarks. Run them yourself and draw your own conclusions.
+
 Every number in this README is reproducible. Run them yourself:
 
 ```bash
@@ -367,6 +371,16 @@ This is their work. Open source. Free. Because healing shouldn't have a paywall.
 Optional:
 - Telegram account (for phone messaging)
 - Groq API key (free at [groq.com](https://groq.com)) for consensus, heartbeat, and router
+
+---
+
+## Known Limitations
+
+- **Benchmarks are architectural, not production.** Token counts use word-count estimation. Continuity tests use planted data. Stability tests simulate models rather than running live inference. These prove the architecture works as designed, not that specific numbers will hold in your usage.
+- **Not fully local.** Telegram messaging and Groq-powered features (consensus, heartbeat, dream consolidation) send data to external services. Core agent coordination (CLAUDE.md, file-based memory, task management, session hooks) is fully local.
+- **Router is regex-based.** Natural language routing uses keyword matching with Groq fallback. It handles common patterns but is not a general-purpose intent classifier.
+- **Single developer.** This is built by one person with AI assistance. It is a working prototype, not a production enterprise system.
+- **Windows-primary.** Most testing done on Windows. Mac/Linux install script exists but is less tested.
 
 ---
 
