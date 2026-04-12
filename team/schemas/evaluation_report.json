@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "required": ["task_id", "result", "score"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "result": { "type": "string", "enum": ["pass", "fail"] },
+    "score": { "type": "number" },
+    "passed_criteria": { "type": "array", "items": { "type": "string" } },
+    "failed_criteria": { "type": "array", "items": { "type": "string" } },
+    "required_rework": { "type": "array", "items": { "type": "string" } }
+  }
+}

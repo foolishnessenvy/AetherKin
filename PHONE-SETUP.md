@@ -21,7 +21,7 @@ claude --channels plugin:telegram@claude-plugins-official
 ```
 
 ### Step 4: Done.
-Now every message you send to your bot on Telegram goes directly into Claude Code on your computer. Claude responds through Telegram. Full Claude subscription. Full file access. Full CLAUDE.md personality.
+Now every message you send to your bot on Telegram goes directly into Claude Code on your computer. Claude responds through Telegram using your existing subscription. Claude Code must stay running on your computer for this to work.
 
 ## How It Works
 - Your phone sends a Telegram message

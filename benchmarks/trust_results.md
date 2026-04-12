@@ -86,7 +86,7 @@ This means crisis detection runs 24/7 on any incoming content, not just Telegram
 
 ## What This Proves
 
-1. **Every interaction is monitored** -- not a marketing claim, wired into the code
+1. **Every Telegram interaction is monitored** -- wired into aetherkin_messenger.py. Note: direct `claude` terminal sessions do NOT run through auto_council unless session_start.py is configured as a hook.
 2. **Crisis detection costs nothing** -- pure regex, no API calls
 3. **Response modification is automatic** -- crisis/emotional context injected before inference
 4. **Verification is opt-in** -- --verify flag for factual cross-checking

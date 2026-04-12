@@ -396,7 +396,7 @@ Optional:
 - [x] System tray app
 - [x] Natural language router
 - [x] Autopilot mode (continuous background processing)
-- [x] Crisis detection wired into every interaction
+- [x] Crisis detection wired into Telegram messages and session start scans
 - [x] Token usage tracking per session
 - [ ] Emotional memory tracking across sessions
 - [ ] Wound-to-wisdom matching engine
